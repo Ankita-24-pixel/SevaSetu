@@ -2,46 +2,46 @@
 
 // export default function FloatingSearch() {
 //   return (
-//     <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 p-3 sm:p-4">
-//       <form className="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:divide-x divide-slate-100">
+//     <div className="max-w-5xl p-3 mx-auto bg-white border shadow-2xl rounded-3xl shadow-slate-200/50 border-slate-100 sm:p-4">
+//       <form className="flex flex-col gap-2 lg:flex-row lg:gap-0 lg:divide-x divide-slate-100">
         
 //         {/* Search Input */}
-//         <div className="flex-1 px-4 py-3 flex items-center gap-3 hover:bg-slate-50 rounded-2xl transition-colors cursor-text">
+//         <div className="flex items-center flex-1 gap-3 px-4 py-3 transition-colors hover:bg-slate-50 rounded-2xl cursor-text">
 //           <Search className="text-slate-400" size={22} />
 //           <div className="flex-1">
-//             <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Looking for</label>
+//             <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">Looking for</label>
 //             <input 
 //               type="text" 
 //               placeholder="Hospitals, Police, Banks..." 
-//               className="w-full bg-transparent text-slate-900 placeholder-slate-400 outline-none font-medium"
+//               className="w-full font-medium bg-transparent outline-none text-slate-900 placeholder-slate-400"
 //             />
 //           </div>
 //         </div>
 
 //         {/* Location / Radius */}
-//         <div className="flex-1 px-4 py-3 flex items-center justify-between hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer group">
+//         <div className="flex items-center justify-between flex-1 px-4 py-3 transition-colors cursor-pointer hover:bg-slate-50 rounded-2xl group">
 //           <div className="flex items-center gap-3">
 //             <MapPin className="text-slate-400" size={22} />
 //             <div>
-//               <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Where</label>
-//               <select className="bg-transparent text-slate-900 outline-none font-medium appearance-none cursor-pointer">
+//               <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">Where</label>
+//               <select className="font-medium bg-transparent outline-none appearance-none cursor-pointer text-slate-900">
 //                 <option>Current Location (5km)</option>
 //                 <option>Current Location (10km)</option>
 //                 <option>Custom City...</option>
 //               </select>
 //             </div>
 //           </div>
-//           <button type="button" className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors opacity-0 group-hover:opacity-100" title="Detect Location">
+//           <button type="button" className="p-2 text-blue-600 transition-colors rounded-full opacity-0 hover:bg-blue-50 group-hover:opacity-100" title="Detect Location">
 //             <Crosshair size={18} />
 //           </button>
 //         </div>
 
 //         {/* Type Filter */}
-//         <div className="flex-1 px-4 py-3 flex items-center gap-3 hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer">
+//         <div className="flex items-center flex-1 gap-3 px-4 py-3 transition-colors cursor-pointer hover:bg-slate-50 rounded-2xl">
 //           <Building2 className="text-slate-400" size={22} />
 //           <div>
-//             <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Sector</label>
-//             <select className="bg-transparent text-slate-900 outline-none font-medium appearance-none cursor-pointer">
+//             <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">Sector</label>
+//             <select className="font-medium bg-transparent outline-none appearance-none cursor-pointer text-slate-900">
 //               <option>All Sectors</option>
 //               <option>Government Only</option>
 //               <option>Private Only</option>
@@ -113,35 +113,36 @@ export default function FloatingSearch({ onSearch }) {
   };
 
   return (
-    <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 p-3 sm:p-4">
-      <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:divide-x divide-slate-100">
+    <div className="max-w-5xl p-3 mx-auto bg-white border shadow-2xl rounded-3xl shadow-slate-200/50 border-slate-100 sm:p-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 lg:flex-row lg:gap-0 lg:divide-x divide-slate-100">
         
         {/* Search Input */}
-        <div className="flex-1 px-4 py-3 flex items-center gap-3 hover:bg-slate-50 rounded-2xl transition-colors cursor-text">
+        <div className="flex items-center flex-1 gap-3 px-4 py-3 transition-colors hover:bg-slate-50 rounded-2xl cursor-text">
           <Search className="text-slate-400" size={22} />
           <div className="flex-1">
-            <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Looking for</label>
+            <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">Looking for</label>
             <input 
               type="text" 
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               placeholder="Hospitals, Police, Banks..." 
-              className="w-full bg-transparent text-slate-900 placeholder-slate-400 outline-none font-medium"
+              className="w-full font-medium bg-transparent outline-none text-slate-900 placeholder-slate-400"
             />
           </div>
         </div>
 
         {/* Location / Radius */}
-        <div className="flex-1 px-4 py-3 flex items-center justify-between hover:bg-slate-50 rounded-2xl transition-colors group">
+        <div className="flex items-center justify-between flex-1 px-4 py-3 transition-colors hover:bg-slate-50 rounded-2xl group">
           <div className="flex items-center gap-3">
             <MapPin className="text-slate-400" size={22} />
             <div>
-              <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">{locationText}</label>
+              <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">{locationText}</label>
               <select 
                 value={radius}
                 onChange={(e) => setRadius(e.target.value)}
-                className="bg-transparent text-slate-900 outline-none font-medium appearance-none cursor-pointer"
+                className="font-medium bg-transparent outline-none appearance-none cursor-pointer text-slate-900"
               >
+                <option value="2">Within 2km</option>
                 <option value="5">Within 5km</option>
                 <option value="10">Within 10km</option>
                 <option value="25">Within 25km</option>
@@ -151,7 +152,7 @@ export default function FloatingSearch({ onSearch }) {
           <button 
             type="button" 
             onClick={handleDetectLocation}
-            className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100" 
+            className="p-2 text-blue-600 transition-colors rounded-full opacity-100 hover:bg-blue-50 lg:opacity-0 lg:group-hover:opacity-100" 
             title="Detect My Location"
           >
             <Crosshair size={18} />
@@ -159,14 +160,14 @@ export default function FloatingSearch({ onSearch }) {
         </div>
 
         {/* Type Filter */}
-        <div className="flex-1 px-4 py-3 flex items-center gap-3 hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer">
+        <div className="flex items-center flex-1 gap-3 px-4 py-3 transition-colors cursor-pointer hover:bg-slate-50 rounded-2xl">
           <Building2 className="text-slate-400" size={22} />
           <div>
-            <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Sector</label>
+            <label className="block mb-1 text-xs font-bold tracking-wider uppercase text-slate-800">Sector</label>
             <select 
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="bg-transparent text-slate-900 outline-none font-medium appearance-none cursor-pointer"
+              className="font-medium bg-transparent outline-none appearance-none cursor-pointer text-slate-900"
             >
               <option value="">All Sectors</option>
               <option value="Government">Government Only</option>

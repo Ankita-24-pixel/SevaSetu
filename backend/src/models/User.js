@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["USER", "ADMIN"],
         default: "USER"
-    }
+    },
+    favourites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Service'
+    }]
 }, {timestamps: true});
 
 module.exports = mongoose.model("User", userSchema);
