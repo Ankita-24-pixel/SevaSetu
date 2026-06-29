@@ -67,11 +67,14 @@ const handleExecuteSearch = async (searchParams) => {
         out center;
       `;
 
-      const response = await axios.post(
-        'https://overpass-api.de/api/interpreter',
-        `data=${encodeURIComponent(query)}`,
-        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-      );
+      try {
+        // Try the main German server first using GET
+        response = await axios.get(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`);
+      } catch (primaryErr) {
+        console.warn("Primary server failed. Routing to backup server...", primaryErr);
+        // If it fails, instantly try the backup French server using GET
+        response = await axios.get(`https://overpass.kumi.systems/api/interpreter?data=${encodeURIComponent(query)}`);
+      }
       
       const formattedServices = response.data.elements.map(el => {
         const lat = el.lat || el.center?.lat;
