@@ -39,7 +39,7 @@ export default function ServiceDetails() {
     if (!service) {
       const fetchServiceDetails = async () => {
         try {
-          const response = await axios.get(`import.meta.env.VITE_API_URL/services/${id}`);
+          const response = await axios.get(import.meta.env.VITE_API_URL+`/services/${id}`);
           setService(response.data);
         } catch (err) {
           console.error(err);
@@ -63,7 +63,7 @@ export default function ServiceDetails() {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'import.meta.env.VITE_API_URL/users/favorites/toggle', 
+        import.meta.env.VITE_API_URL+'/users/favorites/toggle', 
         { 
           serviceId: service._id || service.id,
           serviceData: service // Pass data for lazy-caching
