@@ -171,49 +171,50 @@ const deleteService = async (req, res) => {
 
     }
 };
+
 const getNearbyServices = async (req, res) => {
-    try {
+  try {
+    const { lat, lng, radius, category, type } = req.query;
 
-        const { lat, lng, radius = 5, category, type } = req.query;
-        if (!lat || !lng || lat === 'null' || lng === 'null' || lat === 'undefined') {
-      return res.status(400).json({ 
-        message: "Missing or invalid location. Please enable location services on your device." 
-      });
+    let searchQuery = {};
+
+    if (category) {
+      searchQuery.$or = [
+        { name: { $regex: new RegExp(category, "i") } },
+        { category: { $regex: new RegExp(category, "i") } }
+      ];
     }
-    // 2. Parse the numbers safely
-    const parsedLat = parseFloat(lat);
-    const parsedLng = parseFloat(lng);
 
-    // 3. Double check that parsing actually worked
-    if (isNaN(parsedLat) || isNaN(parsedLng)) {
-       return res.status(400).json({ 
-        message: "Location coordinates must be valid numbers." 
-      });
+    if (!lat || !lng || lat === 'null' || lng === 'null' || lat === 'undefined') {
+      return res.status(400).json({ message: "Missing or invalid location." });
     }
-    const radiusInMeters = parseInt(radius) * 1000;
-        const services = await Service.find({
-            location: {
-                $near: {
-                    $geometry: {
-                        type: "Point",
-                        coordinates: [
-                            Number(lng),
-                            Number(lat)
-                        ]
-                    },
-                    $maxDistance: Number(distance)
-                }
-            }
-        });
 
-        res.status(200).json(services);
+    // 2. The Magic Aggregation Pipeline
+    const services = await Service.aggregate([
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: [parseFloat(lng), parseFloat(lat)]
+          },
+          distanceField: "calculatedDistance", // MongoDB will inject the exact distance (in meters) here!
+          maxDistance: parseFloat(radius)*1000,
+          spherical: true,
+          query: searchQuery
+        }
+      }
+    ]);
 
-    } catch (error) {
+    res.status(200).json(services);
 
-        res.status(500).json({
-            message: error.message
-        });
-
-    }
+  } catch (error) {
+    console.error("Geospatial Search Error:", error);
+    res.status(500).json({ 
+      message: "An error occurred while searching for services.",
+      error: error.message 
+    });
+  }
 };
+
+module.exports = { getNearbyServices };
 module.exports = {createService, getAllServices, getServiceById, searchServices, getNearbyServices};

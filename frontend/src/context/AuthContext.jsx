@@ -32,18 +32,18 @@ export const AuthProvider = ({ children }) => {
     verifyUser();
   }, []);
 
-  const loginAuth = (userData, token) => {
+  const login = (userData, token) => {
     localStorage.setItem('token', token);
     setUser(userData);
   };
 
-  const logoutAuth = () => {
+  const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginAuth, logoutAuth, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
