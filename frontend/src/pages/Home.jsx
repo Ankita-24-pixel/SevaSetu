@@ -104,7 +104,6 @@ const handleExecuteSearch = async (searchParams) => {
       let finalServices = formattedServices;
 
       if (!isGeneric && searchTerm !== '') {
-         // Extract unique keywords (e.g. from "Subhash Excellence School" we extract "subhash" and "excellence")
          const searchWords = searchTerm.split(' ').filter(word => word.length > 2 && !genericCategories.includes(word));
          
          if (searchWords.length > 0) {
@@ -257,7 +256,7 @@ const handleExecuteSearch = async (searchParams) => {
         </section>
       )}  
 
-      <section className="container px-6 py-20 mx-auto">
+      <section id="about" className="container px-6 py-20 mx-auto">
         <div className="mb-12 text-center lg:text-left">
           <h2 className="mb-4 text-3xl font-bold text-slate-900">Browse by Category</h2>
           <p className="max-w-2xl mx-auto text-slate-600 lg:mx-0">Quickly filter through specialized services in your immediate vicinity.</p>
@@ -266,7 +265,7 @@ const handleExecuteSearch = async (searchParams) => {
       </section>
 
       <StatsSection />
-      <MapSection /> 
+      <div id='map'><MapSection /> </div>
       <FeaturesSection />
       <Footer />
     </div>

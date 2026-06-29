@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ServiceDetails from './pages/ServiceDetails';
 import Favorites from './pages/Favorites';
+import AddService from './pages/AddService';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/add-service" element={<AddService />} />
             
             <Route 
               path="/service/:id" 
@@ -27,6 +31,8 @@ function App() {
               } 
             />
             <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>}/>
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
           </Routes>
         </div>
       </Router>

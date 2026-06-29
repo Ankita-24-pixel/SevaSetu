@@ -14,10 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    confirmPaasword:{
-        type: String,
-        required: true
-    },
+    
 
     role: {
         type: String,
@@ -27,7 +24,9 @@ const userSchema = new mongoose.Schema({
     favourites: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service'
-    }]
+    }],
+    resetPasswordToken: String,
+    resetPasswordExpire: Date
 }, {timestamps: true});
 
 module.exports = mongoose.model("User", userSchema);
