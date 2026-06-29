@@ -17,7 +17,7 @@ export default function ForgotPassword() {
 
     try {
       // Sends request to your backend to generate a reset token and email it
-      const response = await axios.post('http://localhost:3001/api/users/forgot-password', { email });
+      const response = await axios.post('import.meta.env.VITE_API_URL/users/forgot-password', { email });
       setMessage(response.data.message || 'Password reset link sent to your email.');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to send reset link. Please try again.');

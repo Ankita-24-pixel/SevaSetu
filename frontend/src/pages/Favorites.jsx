@@ -14,7 +14,7 @@ export default function Favorites() {
       try {
         const token = localStorage.getItem('token');
         // Call our new backend route to get the populated list
-        const response = await axios.get('http://localhost:3001/api/users/favorites', {
+        const response = await axios.get('import.meta.env.VITE_API_URL/users/favorites', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFavorites(response.data);

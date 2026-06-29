@@ -43,7 +43,7 @@ export default function AddService() {
       const token = localStorage.getItem('token');
       // Sending to your Express backend's createService endpoint
       await axios.post(
-        'http://localhost:3001/api/services',
+        'import.meta.env.VITE_API_URL/services',
         {
           ...formData,
           // Defaulting location to 0,0 since we aren't using a map picker yet

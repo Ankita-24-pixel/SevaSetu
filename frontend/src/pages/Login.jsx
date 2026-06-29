@@ -22,7 +22,7 @@ const location = useLocation();
 
     try {
       // Connects to your Express auth controller
-      const response = await axios.post('http://localhost:3001/api/auth/login', formData);
+      const response = await axios.post('import.meta.env.VITE_API_URL/auth/login', formData);
      const { token, user } = response.data;
 
     // Use our context function to save the data
