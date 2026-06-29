@@ -25,7 +25,7 @@ export default function ServiceCard({ service, initiallyFavorited = false }) {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:3001/api/users/favorites/toggle', 
+        'import.meta.env.VITE_API_URL/users/favorites/toggle', 
         { 
           serviceId: service.id || service._id,
           serviceData: service // <-- THIS SENDS THE LIVE OSM DATA TO BE CACHED

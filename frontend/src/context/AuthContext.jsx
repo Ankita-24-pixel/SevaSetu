@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           // Calls your backend 'getProfile' route
-          const response = await axios.get('http://localhost:3001/api/auth/profile', {
+          const response = await axios.get('import.meta.env.VITE_API_URL/auth/profile', {
             headers: {
               Authorization: `Bearer ${token}` // Sends the JWT token securely
             }
